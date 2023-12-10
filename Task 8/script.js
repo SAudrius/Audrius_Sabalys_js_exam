@@ -25,7 +25,3 @@ calc1.sum(5, 15);
 calc1.subtraction(5, 15);
 calc1.multiplication(5, 15);
 calc1.division(15, 5);
-// console.log("calc1.sum(5, 15) ===", calc1.sum(5, 15));
-// console.log("calc1.subtraction(5, 15) ===", calc1.subtraction(5, 15));
-// console.log("calc1.multiplication(5, 15) ===", calc1.multiplication(5, 15));
-// console.log("calc1.division(15, 5) ===", calc1.division(15, 5));
