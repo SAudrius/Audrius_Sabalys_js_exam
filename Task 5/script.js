@@ -27,3 +27,8 @@ function filterDogOwners(arr) {
 }
 
 // console.log("filterDogOwners ===", filterDogOwners(users));
+filterAdults(users);
+function filterAdults(arr) {
+  return arr.filter((obj) => obj.age >= 18);
+}
+// console.log("filterAdults(users) ===", filterAdults(users));
