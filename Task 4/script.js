@@ -22,21 +22,13 @@ const outputEl = document.getElementById("output");
 function printCars(arrCars) {
   let colorIndex = Number();
   arrCars.forEach((obj) => {
-    const cardEl = document.createElement("div");
-    const headingEl = document.createElement("h2");
-    const subheadingEl = document.createElement("h3");
-    const ulEl = document.createElement("ul");
-    // class & colors
-    cardEl.classList.add("card");
-    headingEl.classList.add("card-heading");
-    subheadingEl.classList.add("card-subheading");
-    ulEl.classList.add("card-ul");
+    const cardEl = createNewElement("div", "card");
+    const headingEl = createNewElement("h2", "card-heading", obj.brand);
+    const subheadingEl = createNewElement("h3", "card-subheading", "Models");
+    const ulEl = createNewElement("ul", "card-ul");
+    // add color to one headings
     setColorEl(colorIndex, headingEl);
     setColorEl(colorIndex, subheadingEl);
-    // text added
-    headingEl.textContent = obj.brand;
-    subheadingEl.textContent = "Models";
-    // get li array styled
     const modelsArrLi = getModelsLi(obj.models, colorIndex);
     // appending to #output
     ulEl.append(...modelsArrLi);
@@ -65,4 +57,11 @@ function setColorEl(clrIndex, element) {
     hsl(${clrIndex}, 99%, 60%)`;
   element.style.webkitBackgroundClip = "text";
   element.style.webkitTextFillColor = "transparent";
+}
+
+function createNewElement(element, className, textVal = null) {
+  const el = document.createElement(element);
+  el.classList.add(className);
+  el.textContent = textVal;
+  return el;
 }
