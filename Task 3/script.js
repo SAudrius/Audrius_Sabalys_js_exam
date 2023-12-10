@@ -11,7 +11,7 @@ Pastaba: Sukurta kortelė, kurioje yra pateikiama vartotojo informacija, turi
 būti stilizuota su CSS ir būti responsive;
 -------------------------------------------------------------------------- */
 
-const ENDPOINT = "https://api.github.com/users";
+const ENDPOINT = "https://api.github.com/user";
 const btnEl = document.getElementById("btn");
 const outputEl = document.getElementById("output");
 
@@ -21,6 +21,10 @@ btnEl.addEventListener("click", () => {
 
 async function init() {
   const userData = await getData();
+  if (userData === false) {
+    console.warn("code stoped somethink wrong");
+    return;
+  }
   const filteredData = userData.map((obj) => {
     return { login: obj.login, avatar_url: obj.avatar_url };
   });
@@ -31,10 +35,14 @@ async function init() {
 async function getData() {
   try {
     const result = await fetch(ENDPOINT);
+    if (!result.ok) {
+      throw new Error(`${result.status},${result.message}`);
+    }
     const data = await result.json();
     return data;
   } catch (err) {
     console.warn(err);
+    return false;
   }
 }
 function addToHtml(dataArr) {
@@ -54,15 +62,3 @@ function addToHtml(dataArr) {
   });
   outputEl.append(ulEl);
 }
-
-// <ul class="grid">
-//   <li class="card">
-//     <img
-//       class="li-img"
-//       src="
-//     https://avatars.githubusercontent.com/u/2?v=4"
-//       alt="image"
-//     />
-//     <p class="user">Login: Username132</p>
-//   </li>
-// </ul>
