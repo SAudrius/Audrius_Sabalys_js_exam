@@ -87,12 +87,12 @@
   font-size: 1.5rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 730px) {
   .grid {
     grid-template-columns: 1fr 1fr;
   }
 }
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
   .grid {
     grid-template-columns: 1fr 1fr 1fr;
   }

@@ -24,7 +24,7 @@ btnEl.addEventListener("click", () => {
 async function init() {
   const userData = await getData();
   if (userData === false) {
-    console.warn("code stoped somethink wrong");
+    console.warn("something went wrong");
     return;
   }
   const filteredData = userData.map((obj) => {
@@ -51,16 +51,25 @@ function addToHtml(dataArr) {
   const ulEl = document.createElement("ul");
   ulEl.classList.add("grid");
   dataArr.map((obj) => {
-    const liEl = document.createElement("li");
-    const pEl = document.createElement("p");
-    const imgEl = document.createElement("img");
-    pEl.textContent = `Login: ${obj.login}`;
-    liEl.classList.add("card");
-    imgEl.classList.add("li-img");
-    pEl.classList.add("user");
-    imgEl.setAttribute("src", `${obj.avatar_url}`);
+    const liEl = createNewElement("li", { class: "card" });
+    const pEl = createNewElement("p", { class: "user" }, `Login:${obj.login}`);
+    const imgEl = createNewElement("img", {
+      src: `${obj.avatar_url}`,
+      alt: "user avatar",
+      class: "li-img",
+    });
     liEl.append(imgEl, pEl);
     ulEl.append(liEl);
   });
   outputEl.append(ulEl);
+}
+
+function createNewElement(element, attr = {}, textVal = null) {
+  const el = document.createElement(element);
+  // destructurizacija
+  for (const [key, value] of Object.entries(attr)) {
+    el.setAttribute(key, value);
+  }
+  el.textContent = textVal;
+  return el;
 }
