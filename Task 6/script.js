@@ -34,4 +34,5 @@ getUserAverageAge(users);
 const getUsersNames = (arr) => {
   return arr.map((obj) => obj.name);
 };
-console.log("getUsersNames ===", getUsersNames(users));
+getUsersNames(users);
+// console.log("getUsersNames ===", getUsersNames(users));
