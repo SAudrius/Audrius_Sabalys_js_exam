@@ -5,7 +5,8 @@ subtraction(a, b) - priima du skaičius ir grąžina jų skirtumą.
 multiplication(a, b) - priima du skaičius ir grąžina jų daugybos rezultatą;
 division(a, b) - priima du skaičius ir grąžina jų dalybos rezultatą;
 ------------------------------------------------------------------------------------ */
-
+"use strict";
+console.log("script.js file was loaded");
 class Calculator {
   sum(num1, num2) {
     return num1 + num2;
