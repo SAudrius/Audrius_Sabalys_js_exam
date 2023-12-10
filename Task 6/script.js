@@ -20,8 +20,8 @@ const users = [
   { id: "9", name: "Daniel Cane", age: 51 },
 ];
 
-const getUserAverageAge = (myArr) => {
-  const res = myArr.reduce(
+const getUserAverageAge = (usersArr) => {
+  const res = usersArr.reduce(
     (accumulator, current, _index, arr) =>
       current.age / arr.length + accumulator,
     0
@@ -30,3 +30,8 @@ const getUserAverageAge = (myArr) => {
 };
 
 getUserAverageAge(users);
+
+const getUsersNames = (arr) => {
+  return arr.map((obj) => obj.name);
+};
+console.log("getUsersNames ===", getUsersNames(users));
