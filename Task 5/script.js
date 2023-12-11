@@ -25,10 +25,11 @@ filterDogOwners(users);
 function filterDogOwners(arr) {
   return arr.filter((obj) => obj.hasDog === true);
 }
+filterDogOwners(users);
 
-// console.log("filterDogOwners ===", filterDogOwners(users));
 filterAdults(users);
 function filterAdults(arr) {
   return arr.filter((obj) => obj.age >= 18);
 }
-// console.log("filterAdults(users) ===", filterAdults(users));
+
+filterAdults(users);
