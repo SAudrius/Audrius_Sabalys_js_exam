@@ -10,5 +10,66 @@ Paspaudus mygtuką "Show users":
 Pastaba: Sukurta kortelė, kurioje yra pateikiama vartotojo informacija, turi 
 būti stilizuota su CSS ir būti responsive;
 -------------------------------------------------------------------------- */
+"use strict";
+console.log("script.js file was loaded");
 
-const ENDPOINT = 'https://api.github.com/users';
+const ENDPOINT = "https://api.github.com/users";
+const btnEl = document.getElementById("btn");
+const outputEl = document.getElementById("output");
+
+btnEl.addEventListener("click", () => {
+  init();
+});
+
+async function init() {
+  const userData = await getData();
+  if (userData === false) {
+    console.warn("something went wrong");
+    return;
+  }
+  const filteredData = userData.map((obj) => {
+    return { login: obj.login, avatar_url: obj.avatar_url };
+  });
+  outputEl.innerHTML = "";
+  addToHtml(filteredData);
+}
+
+async function getData() {
+  try {
+    const result = await fetch(ENDPOINT);
+    if (!result.ok) {
+      throw new Error(`${result.status},${result.message}`);
+    }
+    const data = await result.json();
+    return data;
+  } catch (err) {
+    console.warn(err);
+    return false;
+  }
+}
+function addToHtml(dataArr) {
+  const ulEl = document.createElement("ul");
+  ulEl.classList.add("grid");
+  dataArr.map((obj) => {
+    const liEl = createNewElement("li", { class: "card" });
+    const pEl = createNewElement("p", { class: "user" }, `Login:${obj.login}`);
+    const imgEl = createNewElement("img", {
+      src: `${obj.avatar_url}`,
+      alt: "user avatar",
+      class: "li-img",
+    });
+    liEl.append(imgEl, pEl);
+    ulEl.append(liEl);
+  });
+  outputEl.append(ulEl);
+}
+
+function createNewElement(element, attr = {}, textVal = null) {
+  const el = document.createElement(element);
+  // destructurizacija
+  for (const [key, value] of Object.entries(attr)) {
+    el.setAttribute(key, value);
+  }
+  el.textContent = textVal;
+  return el;
+}

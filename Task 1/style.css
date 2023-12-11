@@ -52,6 +52,27 @@ form {
   color: #fff;
 }
 
+#output {
+  max-width: 80%;
+  margin: 50px auto;
+  gap: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+}
+
+#output p {
+  font-size: 1.75rem;
+  color: #000000;
+}
+
+@media (min-width: 467px) {
+  #output p:last-child {
+    width: auto;
+  }
+}
+
 /* Tablet */
 @media screen and (min-width: 768px) {
   .headline {
@@ -61,5 +82,8 @@ form {
   #search,
   #submit-btn {
     font-size: 2em;
+  }
+  #output p {
+    font-size: 2.25rem;
   }
 }
